@@ -1,0 +1,507 @@
+.fridgeUnit {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  background: var(--fridge-outer);
+  flex-shrink: 0;
+}
+
+/* ── TOP FRIDGE ── */
+.fridgeTop {
+  position: relative;
+  height: 380px;
+  background: var(--fridge-inner-bg);
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 3px solid var(--fridge-edge);
+  border-radius: 16px 16px 0 0;
+}
+
+.fridgeInside {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #e8f4ff 0%, #d4e8f8 50%, #c8dff5 100%);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* vertical wall lines */
+.fridgeInside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(180, 210, 235, 0.2) 40px,
+    rgba(180, 210, 235, 0.2) 41px
+  );
+  pointer-events: none;
+}
+
+/* back wall shadow */
+.fridgeInside::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.08), transparent);
+  pointer-events: none;
+}
+
+.insideVisible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── LIGHT ── */
+.fridgeLightWrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.fridgeLight {
+  width: 28px;
+  height: 14px;
+  background: linear-gradient(180deg, #fffde0, #ffe87a);
+  border-radius: 4px 4px 8px 8px;
+  box-shadow:
+    0 0 20px 10px rgba(255, 240, 100, 0.35),
+    0 0 60px 20px rgba(255, 240, 100, 0.15);
+  position: relative;
+}
+
+.fridgeLight::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 6px;
+  background: #bbb;
+  border-radius: 2px 2px 0 0;
+}
+
+/* ── SHELVES ── */
+.shelvesWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 8px 14px 10px;
+  gap: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.shelf {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 5px;
+  padding: 6px 4px 10px;
+  position: relative;
+}
+
+.shelfDivider {
+  height: 6px;
+  margin: 0 2px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* glass shelf */
+.shelfDivider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.5) 0%,
+    rgba(200,225,245,0.6) 40%,
+    rgba(150,190,220,0.4) 100%
+  );
+  border-radius: 3px;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+/* glass shine */
+.shelfDivider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 30%;
+  height: 2px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 2px;
+}
+
+/* side pocket shadows */
+.shelvesWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
+  pointer-events: none;
+}
+
+.shelvesWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  bottom: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.1), transparent);
+  pointer-events: none;
+}
+
+/* ── DOORS ── */
+.doorLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg,
+    #44484f 0%,
+    #4e535c 25%,
+    #42464e 50%,
+    #383c43 75%,
+    #32363d 100%
+  );
+  transform-origin: left center;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  border-right: 1.5px solid rgba(0,0,0,0.4);
+}
+
+.doorLeft::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0.07) 0%,
+    rgba(255,255,255,0.02) 40%,
+    transparent 100%
+  );
+}
+
+/* door inner panel */
+.doorLeft::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 8px;
+  right: 14px;
+  bottom: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 5px;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.2);
+}
+
+.doorLeftOpen {
+  transform: perspective(900px) rotateY(-75deg);
+}
+
+.doorRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(225deg,
+    #44484f 0%,
+    #4e535c 25%,
+    #42464e 50%,
+    #383c43 75%,
+    #32363d 100%
+  );
+  transform-origin: right center;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  border-left: 1.5px solid rgba(0,0,0,0.4);
+}
+
+.doorRight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to left,
+    rgba(255,255,255,0.07) 0%,
+    rgba(255,255,255,0.02) 40%,
+    transparent 100%
+  );
+}
+
+.doorRight::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 14px;
+  right: 8px;
+  bottom: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 5px;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.2);
+}
+
+.doorRightOpen {
+  transform: perspective(900px) rotateY(75deg);
+}
+
+.doorTexture {
+  display: none;
+}
+
+.handleLeft {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 70px;
+  background: linear-gradient(to right,
+    #4a4f5a,
+    #72788a,
+    #4a4f5a
+  );
+  border-radius: 3px;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.handleRight {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 70px;
+  background: linear-gradient(to right,
+    #4a4f5a,
+    #72788a,
+    #4a4f5a
+  );
+  border-radius: 3px;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.doorSeal {
+  position: absolute;
+  inset: 3px;
+  border: 1.5px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.doorGap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  background: var(--fridge-edge);
+  z-index: 3;
+}
+
+/* ── FREEZER ── */
+.freezerSection {
+  position: relative;
+  height: 110px;
+  background: var(--fridge-inner-bg);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.freezerInside {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #d0e8ff 0%, #b8d4f0 100%);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.freezerInside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(150, 190, 230, 0.2) 40px,
+    rgba(150, 190, 230, 0.2) 41px
+  );
+  pointer-events: none;
+}
+
+.freezerInsideVisible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.freezerLight {
+  width: 30px;
+  height: 10px;
+  background: linear-gradient(180deg, #e0f0ff, #b0d8ff);
+  border-radius: 3px 3px 6px 6px;
+  align-self: center;
+  box-shadow: 0 0 16px 6px rgba(150, 210, 255, 0.4);
+}
+
+.freezerShelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  padding: 0 2px;
+}
+
+.freezerDoor {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    #3a3e47 0%,
+    #42464f 40%,
+    #383c44 100%
+  );
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top center;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.freezerDoor::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 4px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.freezerDoor::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.05) 0%,
+    transparent 50%
+  );
+}
+
+.freezerDoorOpen {
+  transform: perspective(600px) rotateX(-75deg);
+}
+
+.freezerHandle {
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(to bottom,
+    #4a4f5a,
+    #72788a,
+    #4a4f5a
+  );
+  border-radius: 3px;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+  position: relative;
+  z-index: 1;
+}
+
+.freezerLabel {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
+  position: relative;
+  z-index: 1;
+}
+
+.fridgeUnit {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  background: var(--fridge-outer);
+  flex-shrink: 0;
+  position: relative;
+  transition: box-shadow 0.4s ease;
+}
+
+.fridgeUnit::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 18px;
+  border: 1.5px solid rgba(79, 156, 249, 0.35);
+  box-shadow:
+    0 0 16px rgba(79, 156, 249, 0.2),
+    inset 0 0 16px rgba(79, 156, 249, 0.05);
+  pointer-events: none;
+  animation: fridgePulse 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+.fridgeUnit::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 10%;
+  right: 10%;
+  height: 12px;
+  background: radial-gradient(ellipse, rgba(79, 156, 249, 0.25), transparent 70%);
+  pointer-events: none;
+}
+
+@keyframes fridgePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 16px rgba(79, 156, 249, 0.2), inset 0 0 16px rgba(79, 156, 249, 0.05); }
+  50%       { opacity: 0.5; box-shadow: 0 0 28px rgba(79, 156, 249, 0.35), inset 0 0 20px rgba(79, 156, 249, 0.08); }
+}

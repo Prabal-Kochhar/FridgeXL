@@ -1,0 +1,53 @@
+.topBar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px 8px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 17, 23, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.04),
+    0 4px 24px rgba(0,0,0,0.2);
+}
+
+/* ── LOGO TEXT ── */
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  letter-spacing: -1px;
+}
+
+.logoFridge {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: -0.8px;
+}
+
+.logoXL {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.8px;
+}
+
+/* ── MASCOT ── */
+.mascot {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 4px 16px rgba(79,156,249,0.35));
+  transition: transform 0.2s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.mascot:hover {
+  transform: scale(1.1) rotate(-4deg);
+}

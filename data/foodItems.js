@@ -1,0 +1,15 @@
+export const initialFridgeItems = [
+  { id: '1', name: 'Milk', emoji: '🥛', quantity: 1, shelf: 'shelf-1' },
+  { id: '2', name: 'Eggs', emoji: '🥚', quantity: 6, shelf: 'shelf-1' },
+  { id: '3', name: 'Cheese', emoji: '🧀', quantity: 2, shelf: 'shelf-1' },
+  { id: '4', name: 'Butter', emoji: '🧈', quantity: 1, shelf: 'shelf-2' },
+  { id: '5', name: 'Chicken', emoji: '🍗', quantity: 2, shelf: 'shelf-2' },
+  { id: '6', name: 'Leftovers', emoji: '🍱', quantity: 1, shelf: 'shelf-2' },
+  { id: '7', name: 'Juice', emoji: '🧃', quantity: 1, shelf: 'shelf-3' },
+  { id: '8', name: 'Yogurt', emoji: '🫙', quantity: 3, shelf: 'shelf-3' },
+  { id: '9', name: 'Carrots', emoji: '🥕', quantity: 4, shelf: 'drawer' },
+  { id: '10', name: 'Lettuce', emoji: '🥬', quantity: 1, shelf: 'drawer' },
+  { id: '11', name: 'Ice Cream', emoji: '🍦', quantity: 1, shelf: 'freezer' },
+  { id: '12', name: 'Peas', emoji: '🫛', quantity: 1, shelf: 'freezer' },
+  { id: '13', name: 'Pizza', emoji: '🍕', quantity: 2, shelf: 'freezer' },
+]

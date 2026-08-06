@@ -1,0 +1,276 @@
+.plateWrapper {
+  position: absolute;
+  right: -108px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: right 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
+  z-index: 50;
+}
+
+.plateWrapper.open {
+  right: 6px;
+}
+
+/* ── PEEK TRIGGER ── */
+.peekTrigger {
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 56px;
+  background: var(--accent);
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  box-shadow: -3px 0 12px rgba(0,0,0,0.3);
+  transition: background 0.15s ease;
+}
+
+.peekTrigger:hover {
+  background: #3a8af0;
+}
+
+.peekLabel {
+  font-size: 0.45rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.peekArrow {
+  font-size: 0.9rem;
+  color: white;
+  opacity: 0.8;
+  line-height: 1;
+}
+
+/* ── PLATE OUTER ── */
+.plateOuter {
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%,
+    #ffffff 0%,
+    #f0f0eb 30%,
+    #e2e2da 60%,
+    #d0d0c8 85%,
+    #c0c0b8 100%
+  );
+  box-shadow:
+    0 6px 24px rgba(0,0,0,0.45),
+    0 2px 6px rgba(0,0,0,0.2),
+    inset 0 2px 4px rgba(255,255,255,0.8),
+    inset 0 -2px 6px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+  animation: platePulse 4s ease-in-out infinite;
+}
+.plateOuter::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  box-shadow:
+    0 0 16px rgba(255,255,255,0.15),
+    inset 0 0 12px rgba(255,255,255,0.08);
+  pointer-events: none;
+  animation: platePulse 4s ease-in-out infinite;
+}
+
+.plateOuter::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 15%;
+  right: 15%;
+  height: 10px;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+@keyframes platePulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.8), 0 0 16px rgba(255,255,255,0.1); }
+  50%       { box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.8), 0 0 28px rgba(255,255,255,0.22); }
+}
+
+.plateHovered {
+  box-shadow:
+    0 6px 24px rgba(79, 156, 249, 0.4),
+    0 2px 6px rgba(0,0,0,0.2),
+    inset 0 2px 4px rgba(255,255,255,0.8),
+    0 0 32px rgba(255,255,255,0.3);
+  transform: scale(1.04);
+  animation: none;
+}
+
+.plateOuter:hover {
+  transform: scale(1.02);
+}
+
+.plateHovered {
+  box-shadow:
+    0 6px 24px rgba(79, 156, 249, 0.5),
+    0 2px 6px rgba(0,0,0,0.2),
+    inset 0 2px 4px rgba(255,255,255,0.8),
+    inset 0 -2px 6px rgba(0,0,0,0.08);
+  transform: scale(1.04);
+}
+
+/* ── RIM ── */
+.plateRim {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 2px solid rgba(180, 180, 170, 0.5);
+  box-shadow:
+    inset 0 1px 3px rgba(0,0,0,0.08),
+    0 1px 2px rgba(255,255,255,0.6);
+  pointer-events: none;
+}
+
+/* ── INNER WELL ── */
+.plateInner {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%,
+    #fafaf8 0%,
+    #f2f2ee 50%,
+    #e8e8e2 100%
+  );
+  box-shadow:
+    inset 0 3px 10px rgba(0,0,0,0.1),
+    inset 0 1px 3px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ── PLATE LABEL ── */
+.plateLabel {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(120, 120, 110, 0.5);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ── EMPTY STATE ── */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.emptyIcon {
+  font-size: 1.4rem;
+  opacity: 0.35;
+}
+
+.emptyText {
+  font-size: 0.5rem;
+  color: #aaa;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+  white-space: pre;
+}
+
+/* ── ITEMS GRID ── */
+.itemsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  padding: 6px;
+  max-width: 80px;
+}
+
+.plateItem {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 1px;
+  border-radius: 4px;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  line-height: 1;
+}
+
+.plateItem:hover {
+  transform: scale(1.2);
+  opacity: 0.7;
+}
+
+/* ── CONTROLS ── */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.closeBtn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255,255,255,0.15);
+  color: var(--text-primary);
+}
+
+.recipeBtn {
+  background: var(--accent);
+  border: none;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(79, 156, 249, 0.4);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.recipeBtn:hover {
+  background: #3a8af0;
+  transform: scale(1.05);
+}

@@ -5,7 +5,7 @@ export default function TopBar() {
   return (
     <div className={styles.topBar}>
       <div className={styles.logo}>
-        <span className={styles.logoFridge}>Fridge</span>
+        <span className={styles.logoFridge}>TAARAK MEHTA FRIDGE</span>
         <span className={styles.logoXL}>XL</span>
       </div>
       <Image
